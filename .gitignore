@@ -1,1 +1,7 @@
+# Arquivos da IDE/Linguagem
 .idea/
+.venv/
+__pycache__/
+
+# Variáveis sensíveis
+.env
