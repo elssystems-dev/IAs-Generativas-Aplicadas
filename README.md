@@ -6,8 +6,11 @@
 python -m venv .venv
 pip install streamlit
 pip install openai
+pip install agno
 pip install sqlalchemy
 pip install yfinance
+pip install opencv-python
+pip install langchain
 ```
 
 ## 🐍 Introdução Python
@@ -90,7 +93,7 @@ A chave API é um código único que é usado para autenticar e autorizar o aces
 - Monitorar o uso da chave API para detectar atividades suspeitas e agir rapidamente em caso de comprometimento.
 - Usar .env para armazenar a chave API e garantir que o arquivo .env esteja incluído no .gitignore para evitar que seja enviado para repositórios públicos.
 
-No caso deste repositório, a chave API é armazenada diretamente no código até a aula 06, onde passaremos a utilizar o arquivo .env para protegê-la com a biblioteca python-dotenv.
+No caso deste repositório, a chave API é armazenada diretamente no código até a aula 06, onde passaremos a utilizar o arquivo .env para protegê-la com a biblioteca python-dotenv com a variável de ambiente `API_KEY`.
 
 É impossivel por padrão enviar um código para o GitHub que contenha uma chave API, pois o GitHub tem mecanismos de detecção automática de chaves API e irá bloquear o repositório ou alertar o usuário sobre a exposição da chave. Portanto, é importante garantir que a chave API seja removida do código antes de enviá-lo para o GitHub, utilizando práticas como as mencionadas acima para proteger a chave e evitar problemas de segurança.
 

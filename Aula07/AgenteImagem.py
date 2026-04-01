@@ -5,6 +5,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
+from Aula07.AgenteCamera import agenteIACamera
+
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
