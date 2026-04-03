@@ -10,6 +10,7 @@ pip install agno
 pip install sqlalchemy
 pip install yfinance
 pip install opencv-python
+pip install pyautogui
 pip install langchain
 ```
 
