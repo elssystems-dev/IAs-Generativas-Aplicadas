@@ -11,7 +11,12 @@ pip install sqlalchemy
 pip install yfinance
 pip install opencv-python
 pip install pyautogui
+pip install langchain-openai
+pip install langchain-community
 pip install langchain
+
+# Extra:
+pip install dotenv
 ```
 
 ## 🐍 Introdução Python
