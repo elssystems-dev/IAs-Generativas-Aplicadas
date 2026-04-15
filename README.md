@@ -14,6 +14,8 @@ pip install pyautogui
 pip install langchain-openai
 pip install langchain-community
 pip install langchain
+pip install serial
+pip install pyserial
 
 # Extra:
 pip install dotenv
@@ -58,9 +60,7 @@ Estruturas de Dados e Funções
 
 Utilização do arquivo REVISAO.ipynb
 
-## 🦾 Aula 03
-
-### 🖼️ A história da Inteligência Artificial
+## 🖼️ A história da Inteligência Artificial
 
 A inteligência artificial (IA) é um campo da ciência da computação que se concentra na criação de sistemas capazes de realizar tarefas que normalmente exigiriam inteligência humana. A história da IA remonta à década de 1950, quando os pesquisadores começaram a explorar a possibilidade de criar máquinas inteligentes. Nos anos 1950 e 1960, os primeiros programas de IA foram desenvolvidos, como o Logic Theorist e o General Problem Solver. No entanto, esses programas eram limitados em sua capacidade de resolver problemas complexos. Nos anos 1970 e 1980, a IA passou por um período de estagnação conhecido como "inverno da IA", devido à falta de progresso significativo e ao alto custo dos sistemas de IA. No entanto, a partir dos anos 1990, a IA começou a ganhar impulso novamente, com o desenvolvimento de algoritmos de aprendizado de máquina e o aumento do poder computacional. Nos anos 2000, a IA se tornou cada vez mais presente em nossas vidas, com o surgimento de assistentes virtuais, sistemas de recomendação e veículos autônomos. Hoje, a IA continua a evoluir rapidamente, com avanços em áreas como aprendizado profundo, processamento de linguagem natural e visão computacional, prometendo transformar ainda mais a maneira como vivemos e trabalhamos.
 
@@ -116,4 +116,82 @@ HackerTools é um conjunto de ferramentas e recursos projetados para ajudar os p
 ## 🪙 YFinance
 
 YFinance é uma biblioteca Python que permite acessar dados financeiros de forma fácil e eficiente. Ela fornece uma interface para obter informações sobre ações, índices, moedas e outros instrumentos financeiros, incluindo preços históricos, dados de mercado em tempo real, dividendos e muito mais. Com o YFinance, os usuários podem realizar análises financeiras, criar gráficos e desenvolver estratégias de investimento com base em dados precisos e atualizados. A biblioteca é amplamente utilizada por investidores, analistas financeiros e desenvolvedores que desejam integrar dados financeiros em seus projetos de análise e visualização.
+
+## ♾️ Arduino IDE
+
+A Arduino IDE (Integrated Development Environment) é um ambiente de desenvolvimento integrado utilizado para programar placas de microcontroladores da família Arduino. Ele fornece uma interface amigável para escrever, compilar e carregar código em placas Arduino, facilitando o processo de desenvolvimento de projetos eletrônicos. A IDE suporta a linguagem de programação C/C++ e inclui uma série de bibliotecas pré-construídas que simplificam a interação com sensores, atuadores e outros componentes eletrônicos. Com a Arduino IDE, os usuários podem criar uma ampla variedade de projetos, desde simples pisca-pisca de LEDs até sistemas complexos de automação e robótica.
+
+A estrutura básica de um sketch (programa) em Arduino é composta por duas funções principais: `setup()` e `loop()`. A função `setup()` é executada uma vez quando o programa é iniciado e é usada para configurar as definições iniciais, como a configuração de pinos e a inicialização de variáveis. A função `loop()` é executada repetidamente após a execução do `setup()` e contém o código principal do programa que será executado continuamente enquanto a placa estiver ligada. Essa estrutura permite que os programas Arduino sejam simples e eficientes, facilitando o desenvolvimento de projetos eletrônicos interativos.
+
+### ESP32
+
+O ESP32 é um microcontrolador de baixo custo e alta performance desenvolvido pela Espressif Systems. Ele é amplamente utilizado em projetos de Internet das Coisas (IoT) devido à sua capacidade de se conectar a redes Wi-Fi e Bluetooth, além de oferecer uma variedade de recursos integrados, como sensores, interfaces de comunicação e suporte para múltiplos núcleos de processamento. O ESP32 é conhecido por sua eficiência energética, tornando-o ideal para aplicações que exigem baixo consumo de energia, como dispositivos portáteis e sensores remotos. Com sua versatilidade e facilidade de uso, o ESP32 se tornou uma escolha popular entre desenvolvedores e entusiastas de eletrônica para criar uma ampla gama de projetos conectados.
+
+#### Baixando na IDE
+
+Para baixar o suporte ao ESP32 na Arduino IDE, siga os seguintes passos:
+1. Abra a Arduino IDE.
+2. Vá para "File" (Arquivo) > "Preferences" (Preferências).
+3. Na seção "Additional Boards Manager URLs" (URLs adicionais do Gerenciador de Placas), adicione a seguinte URL: `https://dl.espressif.com/dl/package_esp32_index.json`.
+4. Clique  99em "OK" para salvar as preferências.
+5. Em seguida, vá para "Tools" (Ferramentas) > "Board" > "Boards Manager" (Gerenciador de Placas).
+6. Na barra de pesquisa, digite "ESP32" e selecione a opção "esp32 by Espressif Systems".
+7. Clique em "Install" (Instalar) para baixar e instalar o suporte ao ESP32 na Arduino IDE.
+
+#### Códigos
+
+##### Loop básico para piscar um LED conectado ao pino 4 do ESP32
+
+```cpp
+#define PINO 4
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(PINO, OUTPUT);
+  digitalWrite(PINO, LOW);
+}
+
+void loop() {
+  digitalWrite(PINO, HIGH);
+  delay(1000);
+  digitalWrite(PINO, LOW);
+  delay(1000);
+}
+```
+
+##### Loop para controlar o estado do LED conectado ao pino 4 do ESP32 com comandos "LIGAR" e "DESLIGAR" enviados pela porta serial
+
+```cpp
+#define PINO 4
+
+String comando = ""; // str
+void setup() {
+  Serial.begin(115200);
+  pinMode(PINO, OUTPUT);
+  digitalWrite(PINO, LOW);
+}
+
+void loop() {
+  while(Serial.available()) {
+    char c = Serial.read();
+
+    if (c == '\n') {
+      comando.trim();
+
+      if (comando == "LIGAR") {
+        digitalWrite(PINO, HIGH);
+        Serial.println("Pino 4 LIGADO");
+      } else if (comando == "DESLIGAR"){
+        digitalWrite(PINO, LOW);
+        Serial.println("Pino 4 DESLIGADO");
+      } else {
+        Serial.println("Comando inválido");
+      }
+      comando = "";
+    } else {
+      comando += c;
+    }
+  }
+}
+```
 
